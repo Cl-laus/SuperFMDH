@@ -203,7 +203,8 @@ footer {
 .auth-container,.add-container {
   height: 450px;
   width: 400px;
-
+  margin: 100px;
+  
   background-color: var(--scnd-bg);
   border-radius: var(--border-raduis);
 
@@ -247,6 +248,7 @@ form input, form textarea, form select{
 /**********************ADD page ***********************/
 .add-container {
   height: 750px;
+
 }
 form textarea {
   
