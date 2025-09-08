@@ -1,11 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>COUCOU</h1>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+{% block title %}
+    Accueil
+{% endblock %}
+{% block
+content %}
+    <main>
+        <span class="error"><!-- affiche un message d'erreur si on a pas les droits d'acces -->
+        </span>
+
+        <div id="articles-page">
+            <section>
+                <h2>
+                    Nos annonces de maison
+                </h2>
+                <div id="house-container">
+                    {% for product in products %}
+                        {% include
+                '_partials/_card.html.twig' %}
+                    {% endfor %}
+                </div>
+            </section>
+            <section>
+                <h2>
+                    Nos annonces d'appartement
+                </h2>
+                <div id="appartement-container">
+                    {% for product in products %}
+                        {% include
+                '_partials/_card.html.twig' %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

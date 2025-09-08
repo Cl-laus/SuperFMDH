@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Login
+{% endblock %}
+{% block
+content %}
+    <main>
+        <div class="auth-page" id="login-page">
+            <div class="auth-container" id="login-container">
+                <h2>
+                    Connexion à Find My Dream Home
+                </h2>
+                <!-- Affichage de l'erreur si IDs pas correct avec la BDD-->
+                <span class="error" id="emailError"></span>
+                <form action="" method="post">
+                    <label for="email">
+                        Email
+                    </label>
+                    <input type="email" name="email" id="email" required />
+                    <!-- Affichage de l'erreur -->
+                    <span class="error" id="emailError"><!-- affiche l'erreur"email" si elle est presente. Sinon chaine vide -->
+                    </span>
+                    <label for="password">
+                        Mot de passe
+                    </label>
+                    <input type="password" name="password" id="password" required />
+                    <!-- Affichage de l'erreur -->
+                    <span class="error" id="passwordError"></span>
+                    <button>
+                        Se connecter
+                    </button>
+                </form>
+                <p>
+                    <a href="{{ path('register') }}">
+                        Pas encore de compte ? Inscrivez-vous
+                    </a>
+                </p>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,3 +1,280 @@
-body {
-    background-color: skyblue;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --main-bg: rgb(224, 224, 224);
+  --scnd-bg: rgb(255, 255, 255);
+  --txt_color:rgb(0, 0, 0);
+  --txt_color2:rgb(73, 73, 73);
+  --color-blue: rgb(0, 204, 255);
+  --padding: 50px;
+  --border-raduis: 10px;
+}
+
+/**********************COMMUN***********************/
+html, body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--main-bg);
+}
+
+/* le main prend tout l’espace dispo entre le nav et le footer */
+main {
+  flex: 1;
+  width: 100%;
+
+  font-family: "Nata Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/**********************NAV ***********************/
+nav {
+  background-color: var(--scnd-bg);
+  height: 100px;
+  width: 100%;
+
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  padding: var(--padding);
+  font-size: 3rem;
+}
+#links {
+  padding: var(--padding);
+  display: flex;
+  gap: 10px;
+}
+
+#logout {
+  padding: 10px 20px;
+  background-color: rgb(255, 46, 46);
+color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px
+}
+
+
+button,
+.link {
+  padding: 10px 20px;
+  background-color: var(--main-bg);
+
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+/**********************PAGE PRINCIPALE AVEC ARTICLES***********************/
+
+h2 {
+  padding: var(--padding);
+  font-size: 2rem;
+}
+#articles-page {
+  margin-top: 100px;
+}
+
+#house-container,
+#appartement-container {
+  display: flex;
+  flex-wrap: wrap;         /* Permet de passer à la ligne suivante */
+  gap: 10px;              
+  padding: var(--padding);
+  justify-content: flex-start; /* Pour un alignement classique à gauche */
+}
+
+article {
+  width: calc((100% - 50px) / 3); /* 3 colonnes, 2 gaps de 10px */
+  height: 600px;
+
+  background-color: var(--scnd-bg);
+  padding: 15px;
+  gap: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+article:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+article header {
+  height: 350px;
+  width: 100%;
+  position: relative;
+}
+
+article header img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+article header .type {
+  width: 175px;
+  height: 60px;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+
+  border-top-left-radius: 20px;
+  border: 2px solid var(--main-bg);
+
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+
+  /* pour centrer le texte */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+article div {
+  display: flex;
+  justify-content: space-between;
+}
+#button-container{
+  justify-content:end;
+  gap: 10px;
+}
+
+
+
+button:hover,
+.link:hover {
+  background-color: var(--color-blue);
+  transform: scale(1.02);
+}
+/**********************FOOTER ***********************/
+
+footer {
+  width: 100%;
+  background-color: var(--scnd-bg);
+  padding: 20px;
+  text-align: center;
+}
+
+/**********************AUTHENTIFICATION ***********************/
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: block;
+}
+.invalid {
+  border: 2px solid red;
+}
+
+
+.auth-page,
+.add-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-container,.add-container {
+  height: 450px;
+  width: 400px;
+
+  background-color: var(--scnd-bg);
+  border-radius: var(--border-raduis);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 10px;
+}
+.auth-container h2,
+.add-container h2 {
+  padding: 0;
+  font-size: 1.25rem;
+  padding-top: 20px;
+  padding-bottom: 80px;
+}
+
+form{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%
+}
+
+form input, form textarea, form select{
+  
+  height: 25px;
+  border-radius: 3px;
+  border: 2px solid var(--main-bg);
+  font-family: inherit;
+
+}
+
+.auth-container p,
+.add-container p {
+  font-size: 0.9rem;
+  color: var(--color-blue);
+}
+
+/**********************ADD page ***********************/
+.add-container {
+  height: 750px;
+}
+form textarea {
+  
+  resize: none;
+  outline: none;          
+  
+        
+  height: 100px;
+  
+
+}
+form select {
+  
+
+   font-size: 0.85rem;
+   color: var(--txt_color2);
+}
+
+/**********************house et apartment page ***********************/
+.button-nav-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-nav{
+  background-color: var(--scnd-bg);
+  margin: 50px;
+  height: 60px;
+  width: 150px;
+  font-size: 1.5rem;
 }

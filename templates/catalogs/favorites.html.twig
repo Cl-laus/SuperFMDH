@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Vos favoris
+{% endblock %}
+{% block
+content %}
+    <main>
+        <span class="error"><!-- affiche un message d'erreur si on a pas les droits d'acces -->
+        </span>
+        <div id="articles-page">
+            <section>
+                <h2>
+                    Nos annonces favorites
+                </h2>
+                <div id="house-container">
+                    {% for product in products %}
+                        {% include
+                '_partials/_card.html.twig' %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        <div class="button-nav-container">
+            <button class="button-nav">
+                Precedent
+            </button>
+            <button class="button-nav">
+                Suivant
+            </button>
+        </div>
+    </main>
+{% endblock %}

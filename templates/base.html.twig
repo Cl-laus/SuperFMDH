@@ -1,26 +1,30 @@
-<!DOCTYPE html>
 <html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            {% block title %}
+                Agence Immobiliere
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet" />
+        {% block stylesheets %}{% endblock %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agence Immobiliere</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
-
-</head>
-<body>
-
-    {% include 'partials/nav.html.twig' %}
-
-    <main>
-        {% block body %}
-        <!-- Le contenu des pages enfants apparaîtra ici -->
+        {% block javascripts %}
+            {% block importmap %}
+                {{ importmap('app') }}
+            {% endblock %}
         {% endblock %}
-    </main>
+    </head>
+    <body>
+        {% include '_partials/_nav.html.twig' %}
 
-    {% include 'partials/footer.html.twig' %}
-</body>
+        {% block content %}<!-- Le contenu des pages enfants apparaîtra ici -->
+        {% endblock %}
+
+        {% include '_partials/_footer.html.twig' %}
+    </body>
 </html>

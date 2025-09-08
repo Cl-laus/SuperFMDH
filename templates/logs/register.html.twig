@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Register
+{% endblock %}
+{% block content %}
+    <main>
+        <div class="auth-page" id="register-page">
+            <div class="auth-container" id="register-container">
+                <h2>
+                    Inscription à Find My Dream Home
+                </h2>
+                <!-- Affichage du message d'envoi si pas d'erreurs -->
+                <p class="validMsg"></p>
+                <form action="" method="post">
+                    <label for="email">
+                        Email
+                    </label>
+                    <input type="email" name="email" id="email" required />
+                    <!-- Affichage de l'erreur -->
+                    <span class="error" id="emailError"><!-- affiche l'erreur"email" si elle est presente. Sinon chaine vide -->
+                    </span>
+                    <label for="password">
+                        Mot de passe
+                    </label>
+                    <input type="password" name="password" id="password" required />
+                    <!-- Affichage de l'erreur -->
+                    <span class="error" id="passwordError"></span>
+                    <label for="confirm-password">
+                        Confirmation Mot de passe
+                    </label>
+                    <input type="password" name="confirm-password" id="confirm-password" required />
+                    <!-- Affichage de l'erreur pour le mdp si elle existe -->
+                    <span class="error" id="confirmPasswordError"></span>
+                    <button>
+                        Creer un compte
+                    </button>
+                </form>
+                <p>
+                    <a href="{{ path('login') }}">
+                        Déjà inscrit ? Connectez-vous
+                    </a>
+                </p>
+            </div>
+        </div>
+    </main>
+{% endblock %}
