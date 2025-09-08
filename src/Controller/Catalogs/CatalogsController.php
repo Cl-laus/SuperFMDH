@@ -8,32 +8,30 @@ use Symfony\Component\Routing\Annotation\Route;
 //pour permettre de renvoyer une Response dans les méthodes
 use Symfony\Component\HttpFoundation\Response;
 
-class ApartmentsController extends AbstractController
+
+class CatalogsController extends AbstractController
 {
-    #[Route('/apartments', name: "apartments")]
-public function apartments(): Response
-{
-    return $this->render('catalogs/apartments.html.twig',[
-        
-    ]);
-}
+    #[Route('/apartments', name: 'catalog_apartments')]
+    public function apartments(): Response
+    {
+        return $this->render('catalogs/apartments.html.twig', [
+//parametre a remplir
+        ]);
+    }
 
+    #[Route('/houses', name: 'catalog_houses')]
+    public function houses(): Response
+    {
+        return $this->render('catalogs/houses.html.twig', [
+//parametre a remplir
+        ]);
+    }
 
-    #[Route('/houses', name: "houses")]
-public function house(): Response
-{
-    return $this->render('catalogs/houses.html.twig',[
-        
-    ]);
-}
-
-
-    #[Route('/favorites', name: "favorites")]
-public function favorites(): Response
-{
-    return $this->render('catalogs/favorites.html.twig',[
-        
-    ]);
-}
-
+    #[Route('/favorites', name: 'catalog_favorites')]
+    public function favorites(): Response
+    {
+        return $this->render('catalogs/favorites.html.twig', [
+//parametre a remplir
+        ]);
+    }
 }

@@ -15,10 +15,20 @@ final class AdController extends AbstractController
            
         ]);
     }
+
+
         #[Route('/edit', name: 'edit ad')]
     public function edit(): Response
     {
         return $this->render('ad/edit.html.twig', [
+           
+        ]);
+    }
+
+            #[Route('/delete', name: 'delete ad')]
+    public function delete(): Response
+    {
+        return $this->render('ad/delete.html.twig', [
            
         ]);
     }
