@@ -12,14 +12,12 @@
                     Nos annonces de maison
                 </h2>
                 <div id="house-container">
-                    {# {% for product in products %}
-                        {% include
-                '_partials/_card.html.twig' %}
-                    {% endfor %} #}
+                    {% for product in products %}
+                        {% include '_partials/_card.html.twig' %}
+                    {% endfor %}
                 </div>
             </section>
         </div>
-        
     </main>
     {% include '_partials/_pagination_nav.html.twig' %}
 {% endblock %}

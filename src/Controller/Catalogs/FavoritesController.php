@@ -7,13 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 //pour permettre de renvoyer une Response dans les méthodes
 use Symfony\Component\HttpFoundation\Response;
+//pour permettre d'utiliser le repo
+use App\Repository\ListingRepository;
 
 class FavoritesController extends AbstractController
 {
     #[Route('/favorites', name: "favorites")]
 public function index(): Response
 {
-    return $this->render('catalogs/favorites.html.twig',[
+    return $this->render('catalogs/favorites.html.twig',['products' => $products,
         
     ]);
 }

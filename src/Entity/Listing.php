@@ -35,6 +35,14 @@ class Listing
     #[ORM\Column]
     private ?\DateTime $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'listings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PropertyType $propertyType = null;
+
+    #[ORM\ManyToOne(inversedBy: 'listings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TransactionType $transactionType = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +128,30 @@ class Listing
     public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getPropertyType(): ?PropertyType
+    {
+        return $this->propertyType;
+    }
+
+    public function setPropertyType(?PropertyType $propertyType): static
+    {
+        $this->propertyType = $propertyType;
+
+        return $this;
+    }
+
+    public function getTransactionType(): ?TransactionType
+    {
+        return $this->transactionType;
+    }
+
+    public function setTransactionType(?TransactionType $transactionType): static
+    {
+        $this->transactionType = $transactionType;
 
         return $this;
     }

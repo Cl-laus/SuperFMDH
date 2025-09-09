@@ -2,8 +2,8 @@
     <header>
         <img src="{{ product.imageUrl }}" alt="" />
         <p class="type">
-            {# {{ product.transactionType }} #}
-            temp
+            {{ product.transactionType.name }}
+            
         </p>
     </header>
     <div class="title">
@@ -24,17 +24,17 @@
         <a href="" class="link">
             Favori
         </a>
-        <a href="{{ path('listing_show', {'id': product.id }) }}" class="link">
-            Detail
-        </a>
+        
         <a href="{{ path('listing_edit', {'id': product.id }) }}" class="link">
             Modifier
         </a>
         <a href="{{ path('listing_delete', {'id': product.id }) }}" class="link">
             Supprimer
         </a>
-    </div>
-    <button>
+    </div id="contact-container">
+    <a id="contact-link" href="{{ path('listing_show', {'id': product.id }) }}" class="link">
         Contact
-    </button>
+    </a>
+    <div>
+    </div>
 </article>

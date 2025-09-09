@@ -7,13 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 //pour permettre de renvoyer une Response dans les méthodes
 use Symfony\Component\HttpFoundation\Response;
+//pour permettre d'utiliser le repo
+use App\Repository\ListingRepository;
 
 class HousesController extends AbstractController
 {
     #[Route('/houses', name: "houses")]
-public function index(): Response
+public function index(ListingRepository $listingRepository): Response
 {
-    return $this->render('catalogs/houses.html.twig',[
+
+    $products = $listingRepository -> findby(
+        ['propertyType' => 1]//correspond a: house
+    );
+    return $this->render('catalogs/houses.html.twig',['products' => $products,
         
     ]);
 }

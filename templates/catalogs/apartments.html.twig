@@ -12,10 +12,10 @@ content %}
                 <h2>
                     Nos annonces d'appartements
                 </h2>
-                <div id="house-container">{# {% for product in products %}
-                    {% include
-                    '_partials/_card.html.twig' %}
-                {% endfor %} #}
+                <div id="apartment-container">
+                   {% for product in products %}
+                        {% include '_partials/_card.html.twig' %}
+                    {% endfor %}
                 </div>
             </section>
         </div>

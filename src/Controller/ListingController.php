@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Entity\Listing;
+use App\Entity\PropertyType;
+use App\Entity\TransactionType;
 use App\Repository\ListingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -14,7 +16,12 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ListingController extends AbstractController
 {
     #[Route('/new', name: 'new')]
-    public function new (EntityManagerInterface $entityManager)
+    public function new (
+        EntityManagerInterface $entityManager,
+        TransactionType $transactionType,
+        PropertyType $propertyType
+
+        )
     {
 
         $listing = new Listing();
@@ -24,7 +31,9 @@ final class ListingController extends AbstractController
             ->setPrice(50)
             ->setImageUrl('test')
             ->setCreatedAt(new \DateTime())
-            ->setUpdatedAt(new \DateTime());
+            ->setUpdatedAt(new \DateTime())
+            ->setTransactionType($transactionType)
+            ->setPropertyType($propertyType);
 
         $entityManager->persist($listing);
         $entityManager->flush();
