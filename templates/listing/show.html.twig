@@ -5,10 +5,16 @@
 {% block
 content %}
     <main>
-        <h1>
-            annonces numero{'id': product.id }
-            <h1>
-                {% include '_partials/_card.html.twig' %}
-            </main>
-        {% endblock %}
-        
+        <div id="articles-page">
+            <section>
+                <h2>
+                    Annonces n° {{product.id }}
+                </h2>
+                <div id="house-container">
+                    {% include
+                '_partials/_card.html.twig' %}
+                </div>
+            </section>
+        </main>
+    {% endblock %}
+    
