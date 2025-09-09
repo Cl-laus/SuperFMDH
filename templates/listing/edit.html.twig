@@ -12,18 +12,13 @@ content %}
                 </h2>
                 <!-- Affichage du message d'envoi si pas d'erreurs -->
                 <p class="validMsg">
-                    <?php
-                        if (! empty($_SESSION['successUpdate'])) {
-                            echo $_SESSION['successUpdate'];
-                            unset($_SESSION['successUpdate']);
-                        }
-                    ?>
+              
                 </p>
                 <form action="" method="post" enctype="multipart/form-data">
                     <label for="title">
                         Title:
                     </label>
-                    <input type="text" id="title" name="title" minlength="5" maxlength="50" required value="<?php echo $product['title'] ?? ''; ?>">
+                    <input type="text" id="title" name="title" minlength="5" maxlength="50" required value="">
                         <!-- Affichage de l'erreur -->
                         <span class="error" id="titleError"></span>
                         <label for="imageUpload">
@@ -35,13 +30,13 @@ content %}
                             <label for="price">
                                 Price:
                             </label>
-                            <input type="number" id="price" name="price" step="50" required value="<?php echo $product['price'] ?? ''; ?>">
+                            <input type="number" id="price" name="price" step="50" required value="">
                                 <!-- Affichage de l'erreur -->
                                 <span class="error" id="priceError"></span>
                                 <label for="location">
                                     Ville:
                                 </label>
-                                <input type="text" id="location" name="location" required value="<?php echo $product['location'] ?? ''; ?>">
+                                <input type="text" id="location" name="location" required value="">
                                     <!-- Affichage de l'erreur -->
                                     <span class="error" id="locationError"></span>
                                     <label for="description">
@@ -50,7 +45,7 @@ content %}
                                     <textarea name="description" rows="4" cols="50" minlength="1" maxlength="255" required></textarea>
                                     <!-- Affichage de l'erreur -->
                                     <span class="error" id="descriptionError">
-                                        <?php echo $errors['description'] ?? '' ?>
+                                        
                                     </span>
                                     <label for="property_type">
                                         Type de propriété:
