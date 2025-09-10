@@ -55,7 +55,8 @@ final class ListingController extends AbstractController
 
     #[Route('/show/{id}', name: 'show', requirements: ['id' => '\d+'])]
     public function show(
-        #[MapEntity(id: "id")] Listing $listing,
+        #[MapEntity(id: "id")] 
+        Listing $listing,
         ListingRepository $listingRepository
     ): Response {
         return $this->render('listing/show.html.twig', [

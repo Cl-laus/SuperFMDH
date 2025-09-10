@@ -1,0 +1,7 @@
+<h1>Liste des types de transaction</h1>
+<ul>
+    {% for type in transactionTypes %}
+        <li>{{ type.name }}</li>
+    {% endfor %}
+</ul>
+<a href="{{ path('transaction_type_new') }}">Ajouter un nouveau type</a>
