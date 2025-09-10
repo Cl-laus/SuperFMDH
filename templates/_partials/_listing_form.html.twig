@@ -1,0 +1,37 @@
+{{ form_start(form) }}
+{# title #}
+{{ form_label(form.title) }}
+{{ form_errors(form.title) }}
+{{ form_widget(form.title) }}
+{{ form_help(form.title) }}
+{# city #}
+{{ form_label(form.city) }}
+{{ form_errors(form.city) }}
+{{ form_widget(form.city) }}
+{{ form_help(form.city) }}
+{# price #}
+{{ form_label(form.price) }}
+{{ form_errors(form.price) }}
+{{ form_widget(form.price) }}
+{{ form_help(form.price) }}
+{# description #}
+{{ form_label(form.description) }}
+{{ form_errors(form.description) }}
+{{ form_widget(form.description) }}
+{{ form_help(form.description) }}
+{# propertyType #}
+{{ form_label(form.propertyType) }}
+{{ form_errors(form.propertyType) }}
+{{ form_widget(form.propertyType) }}
+{{ form_help(form.propertyType) }}
+{# transactionType #}
+{{ form_label(form.transactionType) }}
+{{ form_errors(form.transactionType) }}
+{{ form_widget(form.transactionType) }}
+{{ form_help(form.transactionType) }}
+{# imageUrl #}
+{{ form_row(form.imageUrl) }}
+<button type="submit">
+    Enregistrer
+</button>
+{{ form_end(form) }}

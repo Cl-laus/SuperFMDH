@@ -1,0 +1,61 @@
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="title">
+        Title:
+    </label>
+    <input type="text" id="title" name="title" minlength="5" maxlength="50" required>
+    <!-- Affichage de l'erreur -->
+    <span class="error" id="titleError"></span>
+    <label for="imageUpload">
+        Image:
+    </label>
+    <input type="file" name="image" id="imageUpload" required>
+    <!-- Affichage de l'erreur -->
+    <span class="error" id="imageError"></span>
+    <label for="price">
+        Price:
+    </label>
+    <input type="number" id="price" name="price" step="50" required>
+    <!-- Affichage de l'erreur -->
+    <span class="error" id="priceError"></span>
+    <label for="location">
+        Ville:
+    </label>
+    <input type="text" id="location" name="location" required>
+    <!-- Affichage de l'erreur -->
+    <span class="error" id="locationError"></span>
+    <label for="description">
+        Description:
+    </label>
+    <textarea name="description" rows="4" cols="50" minlength="1" maxlength="255" required></textarea>
+    <!-- Affichage de l'erreur -->
+    <span class="error" id="descriptionError"></span>
+    <label for="property_type">
+        Type de propriété:
+    </label>
+    {# <select id="property_type" name="property_type" required>
+        <option value="" disabled selected hidden>
+            --select type--
+        </option>
+        <?php foreach ($propertyTypes as $type): ?>
+        <option value="<?php echo $type['id']; ?>">
+            <?php echo strtolower($type['name']); // formatage en minuscule ?>
+        </option>
+        <?php endforeach; ?>
+    </select> #}
+    <label for="transaction_type">
+        Type de transaction:
+    </label>
+    {# <select id="transaction_type" name="transaction_type" required>
+        <option value="" disabled selected hidden>
+            --select type--
+        </option>
+        <?php foreach ($transactionTypes as $type): ?>
+        <option value="<?php echo $type['id']; ?>">
+            <?php echo strtolower($type['name']); ?>
+        </option>
+        <?php endforeach; ?>
+    </select> #}
+    <button type="submit">
+        Enregistrer
+    </button>
+</form>

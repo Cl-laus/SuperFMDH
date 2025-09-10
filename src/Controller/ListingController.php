@@ -2,12 +2,14 @@
 namespace App\Controller;
 
 use App\Entity\Listing;
+use App\Form\ListingType;
 use App\Entity\PropertyType;
 use App\Entity\TransactionType;
 use App\Repository\ListingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -15,31 +17,41 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ListingController extends AbstractController
 {
+
+
+    ///////////////////////////NEW METHOD//////////////////////////////////////
     #[Route('/new', name: 'new')]
     public function new (
         EntityManagerInterface $entityManager,
-        TransactionType $transactionType,
-        PropertyType $propertyType
+        Request $request,
 
-        )
-    {
+    ): response {
 
         $listing = new Listing();
-        $listing->setTitle('test')
-            ->setDescription('test')
-            ->setCity('test')
-            ->setPrice(50)
-            ->setImageUrl('test')
-            ->setCreatedAt(new \DateTime())
-            ->setUpdatedAt(new \DateTime())
-            ->setTransactionType($transactionType)
-            ->setPropertyType($propertyType);
 
-        $entityManager->persist($listing);
-        $entityManager->flush();
+        $form = $this->createForm(ListingType::class, $listing);
+        $form->handleRequest($request);
 
-        return $this->redirectToRoute('listing_show', ['id' => $listing->getId()]);
+        //verifie si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            //gere les dates hors du formulaire
+            $listing->setCreatedAt(new \DateTime());
+            $listing->setUpdatedAt(new \DateTime());
+
+            $entityManager->persist($listing);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home', []);// renvoi a la page d'accueil si formulaire ok
+        }
+
+        return $this->render('listing/new.html.twig', [
+            'form' => $form
+              ]);
     }
+
+///////////////////////////SHOW METHOD//////////////////////////////////////
+
+
 
     #[Route('/show/{id}', name: 'show', requirements: ['id' => '\d+'])]
     public function show(
@@ -51,6 +63,8 @@ final class ListingController extends AbstractController
         ]);
     }
 
+
+    ///////////////////////////EDIT METHOD////////////////////////////////////// A TERMINER
     #[Route('/edit/{id}', name: 'edit', requirements: ['id' => '\d+'])]
     public function edit(
         #[MapEntity(id: "id")] Listing $listing
@@ -62,6 +76,8 @@ final class ListingController extends AbstractController
 
     }
 
+
+    ///////////////////////////DELETE METHOD////////////////////////////////////// A TERMINER
     #[Route('/delete/{id}', name: 'delete', requirements: ['id' => '\d+'])]
     public function delete(
         #[MapEntity(id: "id")] Listing $listing,
