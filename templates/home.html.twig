@@ -7,17 +7,14 @@ content %}
     <main>
         <span class="error"><!-- affiche un message d'erreur si on a pas les droits d'acces -->
         </span>
-
         <div id="articles-page">
             <section>
                 <h2>
                     Nos annonces de maison
                 </h2>
                 <div id="house-container">
-                    {% for product in products %}
-                              {% if product.propertyType.name == 'house' %}
-                {% include '_partials/_card.html.twig' %}
-            {% endif %}
+                    {% for product in productsHouses %}
+                        {% include '_partials/_card.html.twig' %}
                     {% endfor %}
                 </div>
             </section>
@@ -26,10 +23,8 @@ content %}
                     Nos annonces d'appartement
                 </h2>
                 <div id="apartment-container">
-                    {% for product in products %}
-                          {% if product.propertyType.name == 'apartment' %}
-                {% include '_partials/_card.html.twig' %}
-            {% endif %}
+                    {% for product in productsApartments %}
+                        {% include '_partials/_card.html.twig' %}
                     {% endfor %}
                 </div>
             </section>

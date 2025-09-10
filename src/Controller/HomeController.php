@@ -20,9 +20,25 @@ class HomeController extends AbstractController
     #[Route('/', name: "home")]
 public function index(ListingRepository $listingRepository): Response
 {
-    $products = $listingRepository -> findall();
+    $productsHouses = $listingRepository->findby(
+            ['propertyType' => 1], //correspond a: house
+
+            ['createdAt' => 'DESC'], //pour l'ordre
+            3,                       // limit par page
+        );
+    $productsApartments = $listingRepository->findby(
+            ['propertyType' => 2], //correspond a: house
+
+            ['createdAt' => 'DESC'], //pour l'ordre
+            3,                       // limit par page
+        );
+
+
+
+
     return $this->render('home.html.twig',[
-        'products' => $products,
+        'productsHouses' => $productsHouses,
+        'productsApartments' => $productsApartments
     ]);
 }
 }
