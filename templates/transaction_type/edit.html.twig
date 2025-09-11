@@ -1,27 +1,25 @@
-
-
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('styles/form_small.css') }}">
 {% endblock %}
-{% block title %}Ajouter un nouveau type de transaction
+{% block title %}Modifier un type de transaction
 {% endblock %}
 
 {% block content %}
 	<main>
 		<div class="page" >
 			<section>
-				<h2>Ajouter un nouveau type de transaction</h2>
+				<h2>Modifier le type de transaction</h2>
 				<div class="container" id="form_small-container">
 
 
 					{{ form_start(form) }}
 					{{ form_widget(form) }}
-					<button type="submit">Creer</button>
+					<button type="submit">Enregistrer les modifications</button>
 					{{ form_end(form) }}
 
 				</div>
-                    <a href="{{ path('property_type_show') }}" class="link">Retour à la liste</a>
+                    <a href="{{ path('transaction_type_show') }}" class="link">Retour à la liste</a>
 			</section>
 		</main>
 	{% endblock %}

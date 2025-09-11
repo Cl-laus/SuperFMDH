@@ -1,5 +1,26 @@
-<h1>Ajouter un nouveau type de propriété</h1>
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Créer</button>
-{{ form_end(form) }}
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/form_small.css') }}">
+{% endblock %}
+{% block title %}Ajouter un nouveau type de propriété
+{% endblock %}
+
+{% block content %}
+	<main>
+		<div class="page" >
+			<section>
+				<h2>Ajouter un nouveau type de propriété</h2>
+				<div class="container" id="form_small-container">
+
+
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					<button type="submit">Creer</button>
+					{{ form_end(form) }}
+
+				</div>
+                    <a href="{{ path('property_type_show') }}" class="link">Retour à la liste</a>
+			</section>
+		</main>
+	{% endblock %}

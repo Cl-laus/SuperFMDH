@@ -23,13 +23,13 @@ public function index(ListingRepository $listingRepository): Response
     $productsHouses = $listingRepository->findby(
             ['propertyType' => 1], //correspond a: house
 
-            ['createdAt' => 'DESC'], //pour l'ordre
+            ['createdAt' => 'ASC'], //pour l'ordre
             3,                       // limit par page
         );
     $productsApartments = $listingRepository->findby(
             ['propertyType' => 2], //correspond a: house
 
-            ['createdAt' => 'DESC'], //pour l'ordre
+            ['createdAt' => 'ASC'], //pour l'ordre
             3,                       // limit par page
         );
 

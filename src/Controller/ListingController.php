@@ -3,8 +3,6 @@ namespace App\Controller;
 
 use App\Entity\Listing;
 use App\Form\ListingType;
-use App\Entity\PropertyType;
-use App\Entity\TransactionType;
 use App\Repository\ListingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
@@ -17,7 +15,18 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ListingController extends AbstractController
 {
-
+    ///////////////////////////SHOW METHOD//////////////////////////////////////
+    
+        #[Route('/show/{id}', name: 'show', requirements: ['id' => '\d+'])]
+        public function show(
+            #[MapEntity(id: "id")]
+            Listing $listing,
+            ListingRepository $listingRepository
+        ): Response {
+            return $this->render('listing/show.html.twig', [
+                'product' => $listing,
+            ]);
+        }
 
     ///////////////////////////NEW METHOD//////////////////////////////////////
     #[Route('/new', name: 'new')]
@@ -35,30 +44,14 @@ final class ListingController extends AbstractController
         //verifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             $entityManager->persist($listing);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home', []);// renvoi a la page d'accueil si formulaire ok
+            return $this->redirectToRoute('home', []); // renvoi a la page d'accueil si formulaire ok
         }
 
         return $this->render('listing/new.html.twig', [
-            'form' => $form
-              ]);
-    }
-
-///////////////////////////SHOW METHOD//////////////////////////////////////
-
-
-
-    #[Route('/show/{id}', name: 'show', requirements: ['id' => '\d+'])]
-    public function show(
-        #[MapEntity(id: "id")] 
-        Listing $listing,
-        ListingRepository $listingRepository
-    ): Response {
-        return $this->render('listing/show.html.twig', [
-            'product' => $listing,
+            'form' => $form,
         ]);
     }
 
@@ -66,15 +59,29 @@ final class ListingController extends AbstractController
     ///////////////////////////EDIT METHOD////////////////////////////////////// A TERMINER
     #[Route('/edit/{id}', name: 'edit', requirements: ['id' => '\d+'])]
     public function edit(
+        Request $request,
+        EntityManagerInterface $entityManager,
         #[MapEntity(id: "id")] Listing $listing
     ): Response {
-        //utiliser $id pour récupérer l'annonce
-        return $this->render('listing/edit.html.twig', [
-            'id' => $id,
+    
+
+        $form = $this->createForm(ListingType::class, $listing);
+        $form->handleRequest($request);
+
+        //verifie si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->persist($listing);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home', []); // renvoi a la page d'accueil si formulaire ok
+        }
+
+        return $this->render('listing/new.html.twig', [
+            'form' => $form,
         ]);
 
     }
-
 
     ///////////////////////////DELETE METHOD////////////////////////////////////// A TERMINER
     #[Route('/delete/{id}', name: 'delete', requirements: ['id' => '\d+'])]

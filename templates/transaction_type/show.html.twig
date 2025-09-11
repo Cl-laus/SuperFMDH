@@ -1,37 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/table.css') }}">
+	<link rel="stylesheet" href="{{ asset('styles/table.css') }}">
 {% endblock %}
-{% block title %}Liste Proprieté
+{% block title %}Liste Transaction
 {% endblock %}
 
 {% block content %}
 	<main>
-
-		<div id="table-container">
-
-			<table>
-				<tbody>
-					{% for type in transactionTypes %}
-						<tr>
-							<td>{{ type.name }}</td>
-							<td>
-								<a href="" class="link">
-									Modifier
-								</a>
-							</td>
-							<td>
-								{# Formulaire pour supprimer le type de propriété #}
-								<form action="" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type ?');">
-									<input type="hidden" name="_method" value="DELETE">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type.id) }}">
-									<button class="link" type="submit">Supprimer</button>
-								</form>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</main>
-{% endblock %}
+		<div id="-page">
+			<section>
+				<h2>
+					Les types de Transaction:
+				</h2>
+				<div id="table-container">
+					{% include
+                '_partials/_table.html.twig' %}
+				</div>
+				<a href="{{ path('transaction_type_new') }}" class="link">Ajouter un nouveau type</a>
+			</section>
+		</main>
+	{% endblock %}

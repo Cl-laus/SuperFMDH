@@ -21,16 +21,16 @@
         {{ product.description }}
     </p>
     <div id="button-container">
-        <a href="" class="link">
+        {# <a href="" class="link">
             Favori
-        </a>
+        </a> #}
         
         <a href="{{ path('listing_edit', {'id': product.id }) }}" class="link">
             Modifier
         </a>
-        <a href="{{ path('listing_delete', {'id': product.id }) }}" class="link">
+        {# <a href="{{ path('listing_delete', {'id': product.id }) }}" class="link">
             Supprimer
-        </a>
+        </a> #}
     </div id="contact-container">
     <a id="contact-link" href="{{ path('listing_show', {'id': product.id }) }}" class="link">
         Contact

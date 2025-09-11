@@ -1,0 +1,22 @@
+<table>
+	<tbody>
+		{% for type in types %}
+			<tr>
+				<td>{{ type.name }}</td>
+				<td>
+					<a href="{{ path(edit_route, {'id': type.id })}}" class="link">
+						Modifier
+					</a>
+				</td>
+				<td>
+					{# Formulaire pour supprimer le type de propriété #}
+					<form action="" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type ?');">
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type.id) }}">
+						<button class="link" type="submit">Supprimer</button>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

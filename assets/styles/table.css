@@ -1,5 +1,6 @@
 /* Centrer le tableau */
 #table-container {
+    margin: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,30 +11,30 @@
 #table-container table {
     width: 60%;
     border-collapse: collapse;
+   
+    background-color: var(--scnd-bg);
+        border-radius: 10px;
+    
+  
 }
 
-#table-container td {
-    background-color: var(--scnd-bg);
-    
-    padding: 5px 10px;
-}
+
 
 /* Ligne en flex pour gérer l'alignement */
 #table-container tr {
     display: flex;
     justify-content: space-between; /* espace entre le nom et les boutons */
     align-items: center;
+
+    margin: var(--padding);
+
 }
 
-/* Nom du type à gauche */
 #table-container td:first-child {
-    flex-grow: 1; /* prend tout l'espace disponible */
+    text-align: left;
+    width: 70%; 
 }
-
-
-/* #table-container td:nth-child(n+2) {
-    flex-grow: 0; 
-    margin-left: 5px;
-} */
-
+#table-container td:last-child {
+    text-align: right;
+}
 

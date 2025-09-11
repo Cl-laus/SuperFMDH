@@ -14,7 +14,7 @@ class PropertyTypeType extends AbstractType
 
         $builder
             ->add('name', TextType::class, [
-                'label'    => 'Nom du type de transaction',
+                'label'    => 'Nom du type de propriété',
                 'required' => true,
             ]);
 
