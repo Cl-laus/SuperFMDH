@@ -2,14 +2,22 @@
 
 namespace App\Entity;
 
+use App\Entity\Interface\TimestanpableInterface;
+use App\Entity\Trait\TimestanpableTrait;
+
 use App\Repository\TransactionTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TransactionTypeRepository::class)]
-class TransactionType
+#[ORM\HasLifecycleCallbacks] // ← C’est la clé pour que PrePersist/PreUpdate fonctionne
+class TransactionType implements TimestanpableInterface
+
 {
+
+    use TimestanpableTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -18,11 +26,7 @@ class TransactionType
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?\DateTime $createdAt = null;
 
-    #[ORM\Column]
-    private ?\DateTime $updatedAt = null;
 
     /**
      * @var Collection<int, Listing>
@@ -52,30 +56,9 @@ class TransactionType
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->createdAt;
-    }
+    
 
-    public function setCreatedAt(\DateTime $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTime $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
+   
     /**
      * @return Collection<int, Listing>
      */

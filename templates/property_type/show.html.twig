@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Proprieté{% endblock %}
+
+{% block content %}
+<h1>Liste des types de Proprieté</h1>
+<ul>
+    {% for type in transactionTypes %}
+        <li>{{ type.name }}</li>
+    {% endfor %}
+</ul>
+<a href="{{ path('property_type_new') }}">Ajouter un nouveau type</a>
+{% endblock %}

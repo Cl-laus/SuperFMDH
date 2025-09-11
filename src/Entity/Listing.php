@@ -2,16 +2,27 @@
 
 namespace App\Entity;
 
+use App\Entity\Interface\TimestanpableInterface;
+use App\Entity\Trait\TimestanpableTrait;
+
 use App\Repository\ListingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ListingRepository::class)]
-class Listing
+#[ORM\HasLifecycleCallbacks] // ← C’est la clé pour que PrePersist/PreUpdate fonctionne
+class Listing implements TimestanpableInterface
+
+
+
 {
+    use TimestanpableTrait;
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -29,11 +40,6 @@ class Listing
     #[ORM\Column(length: 255)]
     private ?string $imageUrl = null;
 
-    #[ORM\Column]
-    private ?\DateTime $updatedAt = null;
-
-    #[ORM\Column]
-    private ?\DateTime $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'listings')]
     #[ORM\JoinColumn(nullable: false)]
@@ -108,29 +114,7 @@ class Listing
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->updatedAt;
-    }
 
-    public function setUpdatedAt(\DateTime $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
 
     public function getPropertyType(): ?PropertyType
     {

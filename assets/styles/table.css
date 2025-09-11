@@ -1,0 +1,39 @@
+/* Centrer le tableau */
+#table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#table-container table {
+    width: 60%;
+    border-collapse: collapse;
+}
+
+#table-container td {
+    background-color: var(--scnd-bg);
+    
+    padding: 5px 10px;
+}
+
+/* Ligne en flex pour gérer l'alignement */
+#table-container tr {
+    display: flex;
+    justify-content: space-between; /* espace entre le nom et les boutons */
+    align-items: center;
+}
+
+/* Nom du type à gauche */
+#table-container td:first-child {
+    flex-grow: 1; /* prend tout l'espace disponible */
+}
+
+
+/* #table-container td:nth-child(n+2) {
+    flex-grow: 0; 
+    margin-left: 5px;
+} */
+
+

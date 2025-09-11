@@ -34,9 +34,7 @@ final class ListingController extends AbstractController
 
         //verifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //gere les dates hors du formulaire
-            $listing->setCreatedAt(new \DateTime());
-            $listing->setUpdatedAt(new \DateTime());
+
 
             $entityManager->persist($listing);
             $entityManager->flush();
