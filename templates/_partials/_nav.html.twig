@@ -1,5 +1,13 @@
 <nav>
     <h1><a href="/">Find My Dream Home</a></h1>
+    <div id="admin_links"> 
+    <h3>Gestion:</h3>
+        {# <div class="link"><a href="{{ path('admin') }}">Admin</a></div> #}
+       
+        <div class="link"><a href="{{ path('property_type_show') }}">Proprieté</a></div>
+        <div class="link"><a href="{{ path('transaction_type_show') }}">Transaction</a></div>
+        {# <div class="link"><a href="{{ path('user_show') }}">Users</a></div> #}
+    </div>
     <div id="links">
         <div class="link"><a href="{{ path('houses') }}">Maisons</a></div>
         <div class="link"><a href="{{ path('apartments') }}">Appartements</a></div>

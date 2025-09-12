@@ -21,8 +21,9 @@ final class PropertyTypeController extends AbstractController
         $propertyTypes = $propertyTypeRepository->findAll();
         //rends la vue
         return $this->render('property_type/show.html.twig', [
-            'edit_route' => 'transaction_type_edit', // renvoi un chemin different selon le controller; car le tableau est le meme pour les deux
-            'types'      => $propertyTypes,          // renvoi la meme variables mais pas avec les memes valeurs
+            'edit_route'   => 'property_type_edit',   // renvoi un chemin different selon le controller; car le tableau est le meme pour les deux
+            'delete_route' => 'property_type_delete', // renvoi un chemin different delete
+            'types'        => $propertyTypes,            // renvoi la meme variables mais pas avec les memes valeurs
         ]);
     }
 
@@ -73,4 +74,23 @@ final class PropertyTypeController extends AbstractController
         ]);
     }
 
+    #[Route('/delete/{id}', name: 'delete', requirements: ['id' => '\d+'], methods: ['POST'])]
+    public function delete(
+        #[MapEntity(id: "id")] PropertyType $propertyType,
+        request $request,
+        EntityManagerInterface $em
+
+    ): Response {
+
+        $token = $request->getPayload()->get('_token'); // recupere le token du formulaire via la requete Http post
+
+        if ($this->isCsrfTokenValid('delete' . $propertyType->getId(), $token)) // verifie que le token est valide
+        {
+            $em->remove($propertyType); // prepare la suppression
+            $em->flush();               // execute la suppression
+
+        }
+        return $this->redirectToRoute('property_type_show'); // redirige vers la liste
+
+    }
 }

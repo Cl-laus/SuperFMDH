@@ -10,8 +10,7 @@
 				</td>
 				<td>
 					{# Formulaire pour supprimer le type de propriété #}
-					<form action="" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce type ?');">
-						<input type="hidden" name="_method" value="DELETE">
+					<form action="{{ path(delete_route, {'id': type.id })}}" method="post" >
 						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ type.id) }}">
 						<button class="link" type="submit">Supprimer</button>
 					</form>

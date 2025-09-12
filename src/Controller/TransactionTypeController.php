@@ -23,6 +23,7 @@ final class TransactionTypeController extends AbstractController
 
         return $this->render('transaction_type/show.html.twig', [
             'edit_route' => 'transaction_type_edit', // renvoi un chemin different selon le controller; car le tableau est le meme pour les deux
+            'delete_route' => 'transaction_type_delete', // renvoi un chemin different pour delete
             'types'      => $transactionTypes,       // renvoi la meme variables mais pas avec les memes valeurs
         ]);
     }
@@ -75,4 +76,25 @@ final class TransactionTypeController extends AbstractController
             'form' => $form,
         ]);
     }
+
+        #[Route('/delete/{id}', name: 'delete', requirements: ['id' => '\d+'], methods: ['POST'])]
+    public function delete(
+        #[MapEntity(id: "id")] TransactionType $transactionType,
+        request $request,
+        EntityManagerInterface $em
+
+    ): Response {
+
+        $token = $request->getPayload()->get('_token'); // recupere le token du formulaire via la requete Http post
+
+        if ($this->isCsrfTokenValid('delete' . $transactionType->getId(), $token)) // verifie que le token est valide
+        {
+            $em->remove($transactionType); // prepare la suppression
+            $em->flush();               // execute la suppression
+
+        }
+        return $this->redirectToRoute('transaction_type_show'); // redirige vers la liste
+
+    }
+
 }

@@ -56,9 +56,14 @@ nav h1 {
     padding: var(--padding);
     font-size: 3rem;
 }
-#links {
+nav h3 {
+
+}
+#links,#admin_links {
     padding: var(--padding);
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -164,10 +169,40 @@ article div {
     display: flex;
     justify-content: space-between;
 }
+
+
+
+
+
 #button-container {
-    justify-content: end;
+    display: flex;
+    justify-content: flex-end; /* boutons alignés à droite */
     gap: 10px;
+   
+    height: 30px;
+    
 }
+
+/* Tous les enfants directs prennent la même largeur et hauteur */
+#button-container > div,
+#button-container > form {
+    width:80px;
+ 
+}
+
+/* Les boutons et liens remplissent tout le parent */
+#button-container > div .link,
+#button-container > form .link,
+#button-container > form button {
+    width: 100%;
+    height: 100%;
+    margin: 0;               /* supprimer  margin css global */
+    padding: 0;              /* supprimer padding global */
+    display: flex;            /* centre le texte */
+    justify-content: center;
+    align-items: center;
+}
+
 
 #contact-container {
     justify-content: center;
